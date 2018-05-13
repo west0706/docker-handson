@@ -12,7 +12,8 @@ Hands-on에 앞서 사용자는 다음과 같은 기본지식이 있어야 합�
  - 최신 AMI의 Amazon Linux {version} EC2
  
 ## Hands-on 시작
-### Amazon Linux 준비
+### Docker를 통해 컨테이너 이미지 띄워보기
+#### Amazon Linux 준비
 1) 
 
 ### Docker 설치
