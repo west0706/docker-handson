@@ -1,6 +1,4 @@
-# 모두의 Docker
-
-## AWSKRUG Container Hands-on First Session
+# 모두의 Docker - AWSKRUG Container Hands-on 1st Session
 Docker의 기본 사용법을 익히고, 간단한 아키텍처 및 CI/CD를 구현해 봅니다.
 또, docker-compose를 통해 실사용 가능한 서비스를 구현해 봅니다.
 
