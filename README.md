@@ -7,4 +7,16 @@ Hands-on에 앞서 사용자는 다음과 같은 기본지식이 있어야 합�
  - 기본 linux command 명령어
  - SSH를 통한 AWS EC2 Amazon Linux 접속방법
  - VIM 에디터 기본 사용법
+
+## 준비 사항
+ - 최신 AMI의 Amazon Linux {version} EC2
  
+## Hands-on 시작
+### 1. Amazon Linux 준비
+1) 
+
+### 2. Docker 설치
+
+### 3. Docker Image 둘러보기
+
+### 4. Image pull
