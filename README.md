@@ -12,11 +12,11 @@ Hands-on에 앞서 사용자는 다음과 같은 기본지식이 있어야 합�
  - 최신 AMI의 Amazon Linux {version} EC2
  
 ## Hands-on 시작
-### 1. Amazon Linux 준비
+### Amazon Linux 준비
 1) 
 
-### 2. Docker 설치
+### Docker 설치
 
-### 3. Docker Image 둘러보기
+### Docker Image 둘러보기
 
-### 4. Image pull
+### Image pull
