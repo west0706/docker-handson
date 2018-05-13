@@ -1,2 +1,2 @@
-# docker-handson
-AWSKRUG Docker Hands-on first session
+# 모두의 Docker
+## AWSKRUG Container Hands-on First Session
