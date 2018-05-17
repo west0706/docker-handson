@@ -9,9 +9,10 @@ Hands-on에 앞서 사용자는 다음과 같은 기본지식이 있어야 합�
  - VIM 에디터 기본 사용법
 
 ## 준비 사항
- - 최신 AMI의 Amazon Linux {version} EC2
+ - AWS 개인계정
+ - Cloud9 개발환경(싱가포르 리전/Amazon Linux)
  
-## Hands-on 시작
+## Hands-On
 ### Docker를 통해 컨테이너 이미지 띄워보기
 #### Amazon Linux 준비
 1) 
