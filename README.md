@@ -18,12 +18,20 @@ Hands-on에 앞서 사용자는 다음과 같은 기본지식이 있어야 합�
 ### Docker를 통해 컨테이너 이미지 띄워보기
 #### Amazon Linux 준비
 - AWS 개인계정에 접속하여 Seoul 리전선택
-- EC2 콘솔접속
-- AMI Amazon Linux 안정화 버전으로 EC2 생성
+- EC2 콘솔로 들어가서 AMI Amazon Linux 안정화 버전으로 EC2 생성
 - Security Group 22번 Port 내 위치에서 오픈
 - 다운받은 Keypair로 SSH를 통해 EC2 접속
 
-### Docker 설치
+#### Docker 설치
+```
+curl -fsSL https://get.docker.com/ | sudo sh
+```
+기본적으로 docker는 root 권한이 필요하기 때문에 매번 sudo를 칠 필요없이
+현재 사용자를 docker 그룹에 추가한다.
+```
+sudo usermod -aG docker $USER
+```
+
 
 ### Docker Image 둘러보기
 
