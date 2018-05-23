@@ -68,6 +68,94 @@ Server:
 CI/CD 의 대표적인 Tool인 Jenkins를 사용하여 Container를 배포하는 실습을 진행합니다.
 개인 Git Repository를 준비하고 소스가 Push 될때마다 Jenkins의 Event hook을 통해 commit 된 소스를 컨테이너와 함께 배포합니다.
 
-먼저 
+전체적인 구성도는 아래와 같습니다.
+
+먼저 간단한 웹서버를 구성하기 위해 node.js express 로 애플리케이션을 만들고 이를 Docker Image로 만든 뒤 컨테이너로 실행하겠습니다. (참고: https://nodejs.org/ko/docs/guides/nodejs-docker-webapp/)
+
+Git Repository 생성
+개인 Github 계정에 빈 Repository를 만듭니다.
+ - github 접속 (https://github.com/)
+ - “New repository” 버튼 클릭
+ - repository 이름을 “awskrug-docker” 로 입력
+ - Public 선택 후 Create
+ - 자신의 로컬PC에서 다음 명력어를 실행하여 repository 동기화
+$ git clone https://github.com/west0706/awskrug-docker.git
+
+Node.js 소스작성
+ - 커멘드 실행: cd ./awskrug-docker
+ - 애플리케이션 의존성 관련 package.json 파일 생성
+ - 아래 코드 삽입 후 저장
+{
+  "name": "docker_web_app",
+  "version": "1.0.0",
+  "description": "Node.js on Docker",
+  "author": "First Last <first.last@example.com>",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.16.1"
+  }
+}
+
+ - server.js 파일을 같은 디렉토리 안에 생성하고  아래 코드 삽입 후 저장
+'use strict';
+const express = require('express');
+
+// 상수
+const PORT = 8000;
+const HOST = '0.0.0.0';
+
+// 앱
+const app = express();
+app.get('/', (req, res) => {
+  res.send('Hello world\n');
+});
+
+app.listen(PORT, HOST);
+console.log(`Running on http://${HOST}:${PORT}`);
+
+
+Dockerfile 생성
+ - 역시 같은 디렉터리 안에 Dockerfile 파일 생성
+
+FROM node:carbon
+
+# 앱 디렉터리 생성
+WORKDIR /usr/src/app
+
+# 앱 의존성 설치
+COPY package*.json ./
+RUN npm install
+
+# 앱 소스 추가
+COPY *.js ./
+
+EXPOSE 8000
+CMD [ "npm", "start" ]
+
+
+ - Dockerfile 과 같은 디렉터리 안에 .dockerignore 파일 생성
+ - .dockerignore 파일 안에 아래 두 줄 추가 후 저장 (도커 이미지의 로컬 npm모듈과 디버깅 로그 복사를 막아줌)
+node_modules
+npm-debug.log
+
+Docker Image 빌드 테스트
+ - 작성한 Dockerfile이 있는 위치에서 아래 명령 실행
+$ docker build -t <your username>/node-web-app .
+ - 생성된 이미지 확인
+$ docker images
+
+REPOSITORY                      TAG        ID              CREATED
+node                            carbon     1934b0b038d1    5 days ago
+<your username>/node-web-app    latest     d64d3505b0d2    1 minute ago
+
+Container 생성 테스트
+ - 웹서버가 제대로 동작하는지 확인하기 위해  컨테이너를 생성해 봅니다.
+$ docker run -p 8000:8000 -d <your username>/node-web-app
+    $ docker ps
+ - 웹 브라우저에서 http://<host name>:8000 으로 접속하여 정상 작동 확인
+ - 컨테이너가 정상적으로 실행되었다면 이제 jenkins 설정을 진행합니다.
 
 
