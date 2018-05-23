@@ -66,6 +66,8 @@ Server:
 ---------------
 ### Docker Container CI/CD 맛보기
 CI/CD 의 대표적인 Tool인 Jenkins를 사용하여 Container를 배포하는 실습을 진행합니다.
-개인 Git Repository를 준비하고 소스가 Commit 될때 
-개인 Git Repository를 준비하고 이벤트 
-개인 Git Repository를 준비하고 
+개인 Git Repository를 준비하고 소스가 Push 될때마다 Jenkins의 Event hook을 통해 commit 된 소스를 컨테이너와 함께 배포합니다.
+
+먼저 
+
+
